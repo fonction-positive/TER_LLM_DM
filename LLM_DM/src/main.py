@@ -49,7 +49,7 @@ def cli(ctx, verbose, config):
 
 
 @cli.command()
-@click.option('--prompt', '-p', required=True, help='Natural language description of dataset')
+@click.option('--prompt', '-p', help='Natural language description of dataset')
 @click.option('--output', '-o', required=True, type=click.Path(), help='Output file path (.spmf)')
 @click.option('--config-json', type=click.Path(exists=True), help='Use JSON config instead of LLM')
 @click.option('--save-config', type=click.Path(), help='Save generated config to file')
@@ -58,13 +58,22 @@ def cli(ctx, verbose, config):
 @click.pass_context
 def generate(ctx, prompt, output, config_json, save_config, seed, stats):
     """
-    Generate a synthetic dataset from natural language description.
+    Generate a synthetic dataset from natural language description or JSON config.
     
-    Example:
+    Examples:
+        # Using JSON config file (no API needed)
+        fidd-bench generate --config-json config.json -o data.spmf
+        
+        # Using natural language prompt (requires LLM API)
         fidd-bench generate -p "1000 transactions, 100 items, sparse retail data" -o data.spmf
     """
     logger = ctx.obj['logger']
     logger.info("Starting data generation...")
+    
+    # Validate: need either prompt or config_json
+    if not prompt and not config_json:
+        click.echo("Error: Must provide either --prompt or --config-json", err=True)
+        sys.exit(1)
     
     try:
         # Step 1: Get configuration
