@@ -119,7 +119,7 @@ LLM_DM/
 
 ### LLM 处理模块 (`src/llm/`)
 
-- `client.py`: LLM API 客户端，支持 OpenAI
+- `client.py`: LLM API 客户端，支持 Deepseek，OpenAI
 - `parser.py`: 配置解析和验证
 
 ### 数据生成核心 (`src/generator/`)
