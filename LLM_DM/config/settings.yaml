@@ -1,0 +1,47 @@
+# FIDD-Bench Global Configuration
+
+# LLM Settings
+llm:
+  provider: "deepseek"  # Options: openai, deepseek, huggingface, local
+  model: "deepseek-chat"  # or gpt-4o-mini for openai
+  temperature: 0.3
+  max_tokens: 2000
+  timeout: 30  # seconds
+
+# Generation Defaults
+generation:
+  default_num_transactions: 1000
+  default_num_items: 100
+  default_density: 0.1
+  default_distribution: "zipf"
+  output_format: "spmf"  # Options: spmf, csv, json
+
+# Pattern Injection
+pattern_injection:
+  default_support: 0.05
+  default_noise_ratio: 0.1
+  max_patterns: 10
+
+# Benchmarking
+benchmark:
+  spmf_jar_path: "./lib/spmf.jar"
+  choco_jar_path: "./lib/choco-mining.jar"
+  java_memory: "4g"
+  timeout: 300  # seconds
+  algorithms:
+    - "Apriori"
+    - "FPGrowth"
+    - "Eclat"
+
+# Paths
+paths:
+  data_raw: "./data/raw"
+  data_processed: "./data/processed"
+  benchmarks: "./data/benchmarks"
+  prompts: "./config/prompts"
+
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "./logs/fidd_bench.log"

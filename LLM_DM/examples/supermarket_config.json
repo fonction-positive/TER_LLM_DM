@@ -1,0 +1,28 @@
+{
+  "dataset_meta": {
+    "num_transactions": 1000,
+    "num_items": 150,
+    "density": 0.08,
+    "avg_transaction_len": 12
+  },
+  "distribution_config": {
+    "method": "zipf",
+    "params": {
+      "alpha": 1.2
+    }
+  },
+  "pattern_injection": [
+    {
+      "id": "milk_bread_combo",
+      "items": [1, 5],
+      "target_support": 0.12,
+      "noise_ratio": 0.03
+    },
+    {
+      "id": "weekend_snacks",
+      "items": [10, 15, 20],
+      "target_support": 0.08,
+      "noise_ratio": 0.05
+    }
+  ]
+}
