@@ -213,6 +213,7 @@ MIT License
 
 - SPMF Library by Philippe Fournier-Viger
 - OpenAI GPT Models
+- Deepseek Models
 - TER Project Team
 
 ## 路线图
